@@ -1,0 +1,12 @@
+id,order_id,patient_id,payment_method,amount
+1,1,1111101,credit_card,800
+2,2,1111102,credit_card,2000
+3,3,1111103,bank_transfer,2000
+4,4,1111104,coupon,1800
+5,5,1111105,gift_card,1500
+6,6,1111106,upi,1200
+7,7,1111107,credit_card,1500
+8,8,1111108,bank_transfer,0
+9,9,1111109,debit_card,0
+10,10,1111110,bank_transfer,3000
+10,10,111111i,upi,0

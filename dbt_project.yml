@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'drug_care_pharma'
 version: '1.0.0'
 config-version: 2
 
@@ -39,4 +39,17 @@ models:
   my_new_project:
     # Applies to all files under models/example/
     example:
-      +materialized: table
+      +materialized: view
+  drug_care_pharma:
+    # Applies to all files under models/bronze_dc_sales/  
+    bronze_dc_sales:
+      +materialized: view
+    # +schema: staging
+    staging_dc_sales:
+      +materialized: view
+      +schema: staging
+      +on_schema_change: "sync_all_columns"
+tests:
+      +severity: warn
+      +store_failures_as: table
+      +schema: dq_audit

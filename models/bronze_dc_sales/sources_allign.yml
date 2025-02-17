@@ -1,0 +1,80 @@
+version: 2
+#let's define all the sources here
+
+sources:
+  - name: dc_hc_sales
+    database: dc_hc_Sales_dev
+    schema: bronze_dc_sales
+    tables:
+      - name: sell
+      - name: time_ord_dim
+      - name: pharmacy
+      - name: doctor
+        columns:
+          - name: ssn
+            tests:
+              - not_null
+              - unique             
+      - name: cnf_customer_dim
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+              - unique
+      - name: emp_dim
+        columns:
+          - name: emp_id
+            tests:
+              - not_null
+              - unique
+      - name: patient
+        columns:
+          - name: ssn
+            tests:
+              - not_null
+              - unique
+              - check_string_length:
+                  required_len: 7
+              - primary_key_column    
+      - name: parma_co
+        columns:
+          - name: pharma_id
+            tests:
+              - not_null
+              - unique
+      - name: prescription
+        columns:
+          - name: ssn
+            tests:
+              - not_null
+          - name: phy_ssn
+            tests:
+              - not_null
+      - name: contract
+        columns:
+          - name: name
+            tests:
+              - not_null
+          - name: pharma_id
+            tests:
+              - not_null
+      - name: make_drug
+        columns:
+          - name: trade_name
+            tests:
+              - not_null
+          - name: pharma_id
+            tests:
+              - not_null          
+# defining dc_pharma_Tables              
+      - name: product_list_dim
+        columns:
+          - name: prod_id #prod_id
+            tests:
+              - test_unique
+      - name: sales_fact
+        columns:
+          - name: pord_id #prod_id
+            tests:
+              - not_null
+              - unique
